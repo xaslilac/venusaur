@@ -1,27 +1,5 @@
 <template>
 	<div id="app">
-		<h3>Firebase Data</h3>
-		<pre>{{ firebaseData }}</pre>
-
-		<h3>Form data</h3>
-		<pre>{{ formData }}</pre>
-
-		<div v-if="state === 'synced'">
-			✅
-		</div>
-
-		<div v-else-if="state === 'modified'">
-			✏️
-		</div>
-
-		<div v-else-if="state === 'error'">
-			❌
-		</div>
-
-		<div v-else-if="state === 'loading'">
-			⏱
-		</div>
-
 		<form @submit.prevent="updateFirebase">
 			<label>
 				Name:
@@ -55,6 +33,37 @@
 
 			<button @click="revertToOriginal">Revert</button>
 		</form>
+
+		<div class="data">
+			<h3>Firebase Data</h3>
+			<pre>{{ firebaseData }}</pre>
+		</div>
+
+		<div class="data">
+			<h3>Form data</h3>
+			<pre>{{ formData }}</pre>
+		</div>
+
+		<div>
+			<h3>
+				Sync Status
+				<span v-if="state === 'synced'">
+					✅
+				</span>
+
+				<span v-else-if="state === 'modified'">
+					✏️
+				</span>
+
+				<span v-else-if="state === 'error'">
+					❌
+				</span>
+
+				<span v-else-if="state === 'loading'">
+					⏱
+				</span>
+			</h3>
+		</div>
 	</div>
 </template>
 
@@ -107,6 +116,7 @@ export default {
 		revertToOriginal() {
 			this.state = "revoked";
 			this.formData = { ...this.originalData };
+			this.updateFirebase();
 		},
 	},
 
@@ -121,6 +131,7 @@ export default {
 		}
 
 		this.originalData = { ...data };
+		this.formData = { ...data };
 		this.state = "synced";
 	},
 };
@@ -137,5 +148,36 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	color: #2c3e50;
 	margin-top: 60px;
+}
+
+.data {
+	display: inline-block;
+	padding-inline-end: 1em;
+}
+
+pre {
+	background-color: palegreen;
+	border-radius: 4px;
+	padding: 0.3em;
+	width: max-content;
+}
+
+button,
+input {
+	font-family: inherit;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	padding: 0.3em;
+	margin: 0.3em;
+
+	border-color: gray;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+button,
+input[type="submit"] {
+	background-color: springgreen;
 }
 </style>

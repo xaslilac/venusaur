@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
+		"@now/node": "^1.5.0",
 		"core-js": "^3.6.4",
 		"debounce": "^1.2.0",
 		"firebase": "^7.14.0",

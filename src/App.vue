@@ -63,6 +63,10 @@
 					⏱
 				</span>
 			</h3>
+
+			<span v-if="state === 'error'">
+				{{ errorMessage }}
+			</span>
 		</div>
 	</div>
 </template>
@@ -96,9 +100,12 @@ export default {
 	methods: {
 		async updateFirebase() {
 			try {
-				await db.doc(documentPath).set(this.formData);
+				await db.doc(documentPath).set({
+					...this.formData,
+					enabled: true, // just assume it's enabled. disable from firebase.
+				});
 				this.state = "synced";
-			} catch (e) {
+			} catch (error) {
 				this.errorMessage = JSON.stringify(error);
 				this.state = "error";
 			}

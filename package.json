@@ -1,0 +1,38 @@
+{
+	"name": "@mckayla/fivuety",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"core-js": "^3.6.4",
+		"debounce": "^1.2.0",
+		"firebase": "^7.14.0",
+		"vue": "^2.6.11",
+		"vuefire": "^2.2.2"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.3.0",
+		"@vue/cli-plugin-eslint": "~4.3.0",
+		"@vue/cli-service": "~4.3.0",
+		"@vue/eslint-config-airbnb": "^5.0.2",
+		"babel-eslint": "^10.1.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-vue": "^6.2.2",
+		"lint-staged": "^9.5.0",
+		"vue-template-compiler": "^2.6.11"
+	},
+	"scripts": {
+		"build": "vue-cli-service build",
+		"dev": "vue-cli-service serve",
+		"lint": "vue-cli-service lint"
+	},
+	"gitHooks": {
+		"pre-commit": "lint-staged"
+	},
+	"lint-staged": {
+		"*.{js,jsx,vue}": [
+			"vue-cli-service lint",
+			"git add"
+		]
+	}
+}

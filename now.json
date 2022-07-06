@@ -1,8 +1,0 @@
-{
-	"rewrites": [
-		{ "source": "/about", "destination": "/about-our-company.html" },
-		{ "source": "/resize/:width/:height", "destination": "/api/sharp" },
-		{ "source": "/user/:id", "destination": "/api/user" },
-		{ "source": "/proxy/(.*)", "destination": "https://example.com/$1" }
-	]
-}
